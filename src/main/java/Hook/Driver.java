@@ -10,7 +10,7 @@ import java.time.Duration;
 
 public class Driver {
 
-    private final WebDriver driver;
+    private static WebDriver driver = new ChromeDriver();
     private final WebDriverWait webDriverWait;
 
     public Driver(){
@@ -23,7 +23,7 @@ public class Driver {
         webDriverWait = new WebDriverWait(driver,Duration.ofSeconds(15));
      }
 
-     public WebDriver getDriver() {
+     public static WebDriver getDriver() {
         return  driver;
      }
 
@@ -31,19 +31,19 @@ public class Driver {
          webDriverWait.until(item -> element.isDisplayed());
      }
 
-     public void setUrl(String url) {
+     public static void setUrl(String url) {
         driver.get(url);
      }
 
-     public void delay(Long second) throws InterruptedException {
-         Thread.sleep(second);
+     public static void delay(Integer second) throws InterruptedException {
+         Thread.sleep(second*1000L);
      }
 
      public void deleteCookies(){
         driver.manage().deleteAllCookies();
      }
 
-     public void tearDown(){
+     public static void tearDown(){
         driver.close();
      }
 

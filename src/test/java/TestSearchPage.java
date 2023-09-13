@@ -7,26 +7,24 @@ import org.junit.Test;
 
 public class TestSearchPage {
 
-    public Driver driver;
     public SearchPage searchPage;
 
     @Before
     public void init(){
-        driver = new Driver();
-        searchPage = new SearchPage(driver.getDriver());
-        driver.setUrl("https://www.google.by/");
+        searchPage = new SearchPage(Driver.getDriver());
+        Driver.setUrl("https://www.google.by/");
     }
 
     @After
     public void close(){
-        driver.tearDown();
+        Driver.tearDown();
     }
 
     @Test
     public void searchTest() throws InterruptedException {
         searchPage.typeTextIntoField("Selenium");
         searchPage.submit();
-        driver.delay(8000L);
+        Driver.delay(8);
     }
 
 
