@@ -1,32 +1,41 @@
 import Page.SearchPage;
 import Hook.Driver;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
+import static Hook.Driver.getDriver;
 
 
-public class TestSearchPage {
+public class TestSearchPage  {
 
     public SearchPage searchPage;
 
+
+
     @Before
     public void init(){
-        searchPage = new SearchPage(Driver.getDriver());
-        Driver.setUrl("https://www.google.by/");
+        searchPage = new SearchPage(getDriver());
     }
 
-    @After
-    public void close(){
+    @AfterClass
+    public static void close(){
         Driver.tearDown();
     }
 
     @Test
     public void searchTest() throws InterruptedException {
+        Driver.setUrl("https://www.google.by/");
         searchPage.typeTextIntoField("Selenium");
         searchPage.submit();
-        Driver.delay(8);
     }
 
+    @Test
+    public void searchTest1() throws InterruptedException {
+        Driver.setUrl("https://www.google.by/");
+        searchPage.typeTextIntoField("Allure");
+        searchPage.submit();
+    }
 
 
 }
