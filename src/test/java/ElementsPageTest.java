@@ -1,5 +1,7 @@
 import Hook.Driver;
 import Page.MainPage;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
@@ -16,10 +18,11 @@ public class ElementsPageTest {
     }
 
     @Test
-    @DisplayName("Test page")
+    @DisplayName("Open elements page")
+    @Severity(SeverityLevel.MINOR)
     public void testPage(){
         MainPage mainPage = new MainPage(Driver.driver,Driver.webDriverWait);
-        mainPage.elementPage.click();
+        mainPage.openElementPage();
         Driver.delay(10);
     }
 
