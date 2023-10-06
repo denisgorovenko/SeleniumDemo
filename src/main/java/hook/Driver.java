@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public class Driver {
 
-    private static WebDriver driver;
+    public static WebDriver driver;
     public static WebDriverWait webDriverWait;
     private static DevTools devTools;
 
@@ -47,10 +47,6 @@ public class Driver {
 
      public static String getCurrentUrl(){
         return driver.getCurrentUrl();
-     }
-
-     public static WebDriver getDriver(){
-        return driver;
      }
 
      public static void getLogs() {

@@ -1,4 +1,6 @@
+import blocks.TextBox;
 import hook.Driver;
+import org.junit.Assert;
 import page.ElementsPage;
 import page.MainPage;
 import io.qameta.allure.Severity;
@@ -14,24 +16,30 @@ public class ElementsPageTest {
 
     public MainPage mainPage ;
     public ElementsPage elementsPage;
+    public TextBox textBox;
     public final String URL = "https://demoqa.com/";
     @Before
     @DisplayName("Init driver")
     public void init(){
         Driver.intDriver();
         Driver.setURL(URL);
-        mainPage = new MainPage(Driver.getDriver(),Driver.webDriverWait);
+        mainPage = new MainPage(Driver.driver,Driver.webDriverWait);
         mainPage.openPage(mainPage.elementPage);
-        elementsPage = new ElementsPage(Driver.getDriver(),Driver.webDriverWait);
+        elementsPage = new ElementsPage(Driver.driver,Driver.webDriverWait);
+        textBox = new TextBox(Driver.driver,Driver.webDriverWait);
     }
 
     @Test
     @DisplayName("Testing check box field")
     @Severity(SeverityLevel.MINOR)
-    public void testPage()  {
+    public void textBoxField()  {
         elementsPage.collapseGroupElement("Elements");
         elementsPage.selectGroupItem("Text Box");
-        Driver.delay(3);
+        textBox.fillFields("test","test@mail.com","test","test").clickSubmit();
+        Assert.assertEquals("test",textBox.getOutputInfo().get(0));
+        Assert.assertEquals("test@mail.com",textBox.getOutputInfo().get(1));
+        Assert.assertEquals("test",textBox.getOutputInfo().get(2));
+        Assert.assertEquals("test",textBox.getOutputInfo().get(3));
     }
 
     @After
