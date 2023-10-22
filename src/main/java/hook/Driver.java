@@ -65,6 +65,7 @@ public class Driver {
                              requestIds[0] = response.getRequestId();
                              if(devTools.send(Network.getResponseBody(requestIds[0])).getBody().contains("Minification")){
                                  System.out.println(response.getResponse().getUrl());
+                                 System.out.println(response.getResponse().getStatus());
                              }
                          }
                  }
