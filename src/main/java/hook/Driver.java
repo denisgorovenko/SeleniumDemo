@@ -41,7 +41,11 @@ public class Driver {
          }
      }
 
-     public static void tearDown(){
+    public static WebDriver getDriver() {
+        return driver;
+    }
+
+    public static void tearDown(){
         driver.close();
      }
 
